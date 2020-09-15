@@ -40,13 +40,11 @@ public class UserService {
 
     public Integer createEducation(Integer id,Education education){
         if(educationRepository.getEducationMap().get(id)==null){
-           // education.setId(id);
             List<Education> educations = new ArrayList<>();
             educations.add(education);
             educationRepository.getEducationMap().put(id,educations);
         }else{
             List<Education> educations = educationRepository.getEducationMap().get(id);
-           // education.setId(id);
             educations.add(education);
             educationRepository.getEducationMap().put(id,educations);
         }
