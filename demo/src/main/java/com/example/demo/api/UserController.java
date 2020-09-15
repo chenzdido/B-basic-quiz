@@ -4,6 +4,7 @@ package com.example.demo.api;
 import com.example.demo.domain.Education;
 import com.example.demo.domain.User;
 import com.example.demo.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,14 @@ public class UserController {
     }
 
     @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
     public Integer createUser(@RequestBody User user){
         return userService.createUser(user);
+    }
+
+    @PostMapping("/{id}/educations")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createEducation(@PathVariable Integer id, @RequestBody Education education){
+        userService.createEducation(id, education);
     }
 }
