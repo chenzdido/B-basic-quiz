@@ -37,7 +37,7 @@ public class UserController {
 
     @PostMapping("/{id}/educations")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createEducation(@PathVariable Integer id, @RequestBody Education education){
+    public void createEducation(@PathVariable Integer id, @RequestBody @Valid Education education){
         userService.createEducation(id, education);
     }
 }
