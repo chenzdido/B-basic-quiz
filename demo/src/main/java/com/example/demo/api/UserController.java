@@ -26,4 +26,9 @@ public class UserController {
     public List<Education> getStudentEducationsById(@PathVariable Integer id){
         return userService.getUserEducationByID(id);
     }
+
+    @PostMapping("")
+    public Integer createUser(@RequestBody User user){
+        return userService.createUser(user);
+    }
 }

@@ -22,5 +22,11 @@ public class UserService {
        List<Education> educations=educationRepository.getEducationMap().get(id);
        return educations;
     }
+
+    public Integer createUser(User user){
+        User newUser = new User(user.getName(),user.getAge(),user.getImgURL(),user.getDescription());
+        userRepository.getUserMap().put(newUser.getId(),newUser);
+        return newUser.getId();
+    }
 }
 
