@@ -14,4 +14,10 @@ public class GlobalExceptionHandler {
         ErrorResult errorResult = new ErrorResult(400,message);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
     }
+
+    @ExceptionHandler(IDNotFoundException.class)
+    public ResponseEntity<ErrorResult> handle(IDNotFoundException ex){
+        ErrorResult errorResult = new ErrorResult(404,ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResult);
+    }
 }

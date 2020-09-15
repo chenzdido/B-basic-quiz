@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.domain.Education;
 import com.example.demo.domain.Message;
 import com.example.demo.domain.User;
+import com.example.demo.exception.IDNotFoundException;
 import com.example.demo.repository.EducationRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,10 @@ public class UserService {
     UserRepository userRepository = new UserRepository();
     EducationRepository educationRepository = new EducationRepository();
     public User getUserById(Integer id){
+        if(userRepository.getUserMap().get(id)==null)
+        {
+            throw new IDNotFoundException("user id is not exist");
+        }
         User user = userRepository.getUserMap().get(id);
         return user;
     }
