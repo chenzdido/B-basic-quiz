@@ -10,7 +10,6 @@ import java.util.Map;
 
 @Component
 @Data
-@AllArgsConstructor
 public class UserRepository {
     private Map<Integer, User> userMap = new HashMap<Integer, User>();
 

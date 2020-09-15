@@ -20,5 +20,5 @@ public class Education {
     @NotBlank(message = "title is not empty")
     @Size(max=256, min=1, message = "title max length is 256")
     private String title;
-    private Integer id;
+    private Integer userId;
 }

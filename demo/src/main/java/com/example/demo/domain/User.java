@@ -24,15 +24,14 @@ public class User {
     private Integer age;
     @NotBlank(message = "imgURL is not empty")
     @Size(max=512, min=8, message = "imgURL length is 8 to 512")
-    @JsonProperty("avatar")
-    private String imgURL;
+    private String avatar;
     @Size(max=1024,message = "description is up to 128")
     private String description;
     public User(String name, Integer age, String imgURL, String description){
         this.id = ++this.count;
         this.name = name;
         this.age = age;
-        this.imgURL = imgURL;
+        this.avatar = imgURL;
         this.description = description;
     }
 }

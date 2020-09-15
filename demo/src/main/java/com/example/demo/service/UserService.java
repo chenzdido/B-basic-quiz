@@ -30,7 +30,7 @@ public class UserService {
     }
 
     public Message createUser(User user){
-        User newUser = new User(user.getName(),user.getAge(),user.getImgURL(),user.getDescription());
+        User newUser = new User(user.getName(),user.getAge(),user.getAvatar(),user.getDescription());
         userRepository.getUserMap().put(newUser.getId(),newUser);
         Message createUserMessage = new Message();
         createUserMessage.setCode(201);
@@ -40,11 +40,13 @@ public class UserService {
 
     public Integer createEducation(Integer id,Education education){
         if(educationRepository.getEducationMap().get(id)==null){
+           // education.setId(id);
             List<Education> educations = new ArrayList<>();
             educations.add(education);
             educationRepository.getEducationMap().put(id,educations);
         }else{
             List<Education> educations = educationRepository.getEducationMap().get(id);
+           // education.setId(id);
             educations.add(education);
             educationRepository.getEducationMap().put(id,educations);
         }
