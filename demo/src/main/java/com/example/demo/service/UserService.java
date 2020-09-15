@@ -15,7 +15,6 @@ public class UserService {
     EducationRepository educationRepository = new EducationRepository();
     public User getUserById(Integer id){
         User user = userRepository.getUserMap().get(id);
-        System.out.println(userRepository.getUserMap());
         return user;
     }
 
