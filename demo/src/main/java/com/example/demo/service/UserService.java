@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.Education;
+import com.example.demo.domain.Message;
 import com.example.demo.domain.User;
 import com.example.demo.repository.EducationRepository;
 import com.example.demo.repository.UserRepository;
@@ -23,13 +24,16 @@ public class UserService {
        return educations;
     }
 
-    public Integer createUser(User user){
+    public Message createUser(User user){
         User newUser = new User(user.getName(),user.getAge(),user.getImgURL(),user.getDescription());
         userRepository.getUserMap().put(newUser.getId(),newUser);
-        return newUser.getId();
+        Message createUserMessage = new Message();
+        createUserMessage.setCode(201);
+        createUserMessage.setId(newUser.getId());
+        return createUserMessage;
     }
 
-    public void createEducation(Integer id,Education education){
+    public Integer createEducation(Integer id,Education education){
         if(educationRepository.getEducationMap().get(id)==null){
             List<Education> educations = new ArrayList<>();
             educations.add(education);
@@ -39,6 +43,9 @@ public class UserService {
             educations.add(education);
             educationRepository.getEducationMap().put(id,educations);
         }
+        Message createEducationMessage = new Message();
+        createEducationMessage.setCode(201);
+        return createEducationMessage.getCode();
     }
 }
 

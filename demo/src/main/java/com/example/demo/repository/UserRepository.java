@@ -13,13 +13,14 @@ import java.util.Map;
 @AllArgsConstructor
 public class UserRepository {
     private Map<Integer, User> userMap = new HashMap<Integer, User>();
-    User user = new User(
-            "KAMIL",
-            1,
-            "https://inews.gtimg.com/newsapp_match/0/3581582328/0",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, non, dolorem, cumque distinctio magni quam expedita velit laborum sunt amet facere tempora ut fuga aliquam ad asperiores voluptatem dolorum! Quasi."
-                );
+
     public UserRepository(){
+        User user = new User(
+                "KAMIL",
+                1,
+                "https://inews.gtimg.com/newsapp_match/0/3581582328/0",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, non, dolorem, cumque distinctio magni quam expedita velit laborum sunt amet facere tempora ut fuga aliquam ad asperiores voluptatem dolorum! Quasi."
+        );
         userMap.put(user.getId(),user);
     }
 }
