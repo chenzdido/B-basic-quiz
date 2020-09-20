@@ -3,8 +3,10 @@ package com.example.demo.api;
 import com.example.demo.domain.Education;
 import com.example.demo.domain.User;
 import com.example.demo.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 import java.util.List;
 
@@ -22,13 +24,15 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public void creteUser(@RequestBody User user){
-        userService.createUser(user);
+    @ResponseStatus(HttpStatus.CREATED)
+    public Long creteUser(@RequestBody @Valid User user){
+        return userService.createUser(user);
     }
 
     @PostMapping("/users/{id}/educations")
-    public void createEducation(@RequestBody Education education){
-        userService.createEducation(education);
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createEducation(@PathVariable Long id, @RequestBody @Valid Education education){
+        userService.createEducation(id, education);
     }
 
     @GetMapping("/users/{id}/educations")
