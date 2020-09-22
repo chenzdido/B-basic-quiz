@@ -47,15 +47,20 @@ public class UserService {
         return userDto.getId();
     }
 
-    public void createEducation(Long id, Education education){
-        Optional<UserDto> userDto = userRepository.findOneById(id);
-        EducationDto educationDto = EducationDto.builder()
+    public void createEducation (Long id, Education education){
+        try {
+            Optional<UserDto> userDto = userRepository.findOneById(id);
+            EducationDto educationDto = EducationDto.builder()
                     .description(education.getDescription())
                     .title(education.getTitle())
                     .year(education.getYear())
                     .user(userDto.get())
                     .build();
-        educationRepository.save(educationDto);
+            educationRepository.save(educationDto);
+        }catch(Exception e){
+            throw new IDNotFoundException("user id is not exist");
+        }
+
     }
 
     public List<Education> getEducationsById(Long id){
