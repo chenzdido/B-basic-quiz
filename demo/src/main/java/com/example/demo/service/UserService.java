@@ -22,19 +22,17 @@ public class UserService {
     }
 
     public User getUserById(Long id){
-        try{
-            Optional<UserDto> userDto = userRepository.findOneById(id);
-            return User.builder()
-                    .id(userDto.get().getId())
-                    .name(userDto.get().getName())
-                    .age(userDto.get().getAge())
-                    .avatar(userDto.get().getAvatar())
-                    .description(userDto.get().getDescription())
-                    .build();
-        } catch(Exception e){
+        Optional<UserDto> userDto = userRepository.findOneById(id);
+        if(userDto.equals(Optional.empty())){
             throw new IDNotFoundException("user id is not exist");
         }
-
+        return User.builder()
+                .id(userDto.get().getId())
+                .name(userDto.get().getName())
+                .age(userDto.get().getAge())
+                .avatar(userDto.get().getAvatar())
+                .description(userDto.get().getDescription())
+                .build();
     }
 
     public Long createUser(User user){
@@ -48,19 +46,17 @@ public class UserService {
     }
 
     public void createEducation (Long id, Education education){
-        try {
-            Optional<UserDto> userDto = userRepository.findOneById(id);
-            EducationDto educationDto = EducationDto.builder()
-                    .description(education.getDescription())
-                    .title(education.getTitle())
-                    .year(education.getYear())
-                    .user(userDto.get())
-                    .build();
-            educationRepository.save(educationDto);
-        }catch(Exception e){
+        Optional<UserDto> userDto = userRepository.findOneById(id);
+        if(userDto.equals(Optional.empty())){
             throw new IDNotFoundException("user id is not exist");
         }
-
+        EducationDto educationDto = EducationDto.builder()
+                .description(education.getDescription())
+                .title(education.getTitle())
+                .year(education.getYear())
+                .user(userDto.get())
+                .build();
+        educationRepository.save(educationDto);
     }
 
     public List<Education> getEducationsById(Long id){

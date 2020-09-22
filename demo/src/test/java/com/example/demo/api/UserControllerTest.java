@@ -167,7 +167,7 @@ class UserControllerTest {
         class WhenRequestIsNotValid {
 
             @Test
-            public void should_create_new_education() throws Exception {
+            public void should_not_create_new_education() throws Exception {
                 doThrow(new IDNotFoundException("user id is not exist"))
                         .when(userService).createEducation(1L, newEducation);
                 mockMvc.perform(post("/users/{id}/educations", 1L))
