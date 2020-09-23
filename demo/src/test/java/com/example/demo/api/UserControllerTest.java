@@ -163,20 +163,6 @@ class UserControllerTest {
             }
         }
 
-        @Nested
-        class WhenRequestIsNotValid {
-
-            @Test
-            public void should_not_create_new_education() throws Exception {
-                doThrow(new IDNotFoundException("user id is not exist"))
-                        .when(userService).createEducation(1L, newEducation);
-                mockMvc.perform(post("/users/{id}/educations", 1L))
-                        .andExpect(status().isNotFound())
-                        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                        .andExpect(jsonPath("$.message", containsString("user id is not exist")));
-                verify(userService).createEducation(2L, newEducation);
-            }
-        }
     }
 
     @Nested
